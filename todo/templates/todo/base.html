@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+<body>
+<!-- Here user dictionary is by default passed to this page by django we can access user dictionary directly.
+Hence we have used user.username and user.is_authenticated similayly we can use other elements.
+ This is the same dictionary as error in views.py at line 23 and 25.-->
+{% if user.is_authenticated %} <!-- Here to check user is logged in or not we have used user.is_authenticated if user
+is already logged in then we are showing message as a "Logged in as 'what is the username is' and logout page link.-->
+Logged In as {{ user.username }}
+
+<!-- The reason behind this form is when user clicks the logout(logout between <a> tag) then browser sends the GET
+request but in our code we have checked in views.py in def logoutuser that the request method is POST so if this form is
+not created then it will get error so when we click on logout button this form gets submitted using POST method calls url 'logoutuser'
+and then goes to views.py logout function and checks the code that logout the user and redirect to home page-->
+<form action="{% url 'logoutuser' %}" method="POST">
+    {% csrf_token %} <!-- Use can use this statement anywhere in the form, this is beaoz of security purpose.Read this: (https://docs.djangoproject.com/en/3.1/ref/csrf/)-->
+    <button type="submit">Logout</button>
+</form>
+
+{% else %} <!-- If user is not logged in then we are showing login and signup option -->
+<a href="{% url 'signupuser' %}">Sign Up</a>
+<a href="{% url 'loginuser' %}">Login</a>
+
+{% endif %}
+
+{% block content %}{% endblock %}
+<br>
+<br>
+</body>
+</html>
