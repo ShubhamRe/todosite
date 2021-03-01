@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+<!-- Similarly if we have to show user is logged in as 'uesrname' on signup page. -->
+{% extends 'todo/base.html' %}
+
+{% block content %}
+
+
+
+<h1>Login</h1>
+<h2>{{ error }}</h2>
+<form method="POST">
+    {% csrf_token %} <!-- Use can use this statement anywhere in the form, this is beaoz of security purpose.Read this: (https://docs.djangoproject.com/en/3.1/ref/csrf/)-->
+    {{ loginform.as_p }} <!--here we have used as_p this helps to look form much better by applying this all the elements
+ of form is surrounded in <p> tag by just adding this as_p.-->
+    <button type="submit">Login</button>
+</form>
+
+{% endblock %}
+</body>
+</html>

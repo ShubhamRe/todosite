@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from todo import views
 
 urlpatterns = [
@@ -24,10 +24,17 @@ urlpatterns = [
     path('signup/', views.signupuser, name='signupuser'),
     path('logout/', views.logoutuser, name='logoutuser'),
     path('login/', views.loginuser, name='loginuser'),
+    path('api/', include('todo.urls')),
 
     # todos
-    path('current/', views.currenttodos, name='currenttodos'), #page to show after login
     path('', views.home, name='home'), #home
+    path('current/', views.currenttodos, name='currenttodos'), #page to show after login
+    path('create/', views.createtodos, name='createtodos'), #page to show after login
+    path('todo/<int:todo_pk>', views.viewtodos, name='viewtodos'), #page to show after login
+    path('todo/<int:todo_pk>/complete', views.completetodos, name='completetodos'), #page to show after login
+    path('todo/<int:todo_pk>/delete', views.deletetodos, name='deletetodos'), #page to show after login
+    path('completed/', views.completedtodos, name='completedtodos'), #page to show after login
 
 
+    
 ]

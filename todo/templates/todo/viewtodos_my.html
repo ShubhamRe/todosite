@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Todo's</title>
+</head>
+<body>
+{% extends 'todo/base.html' %}
+
+{% block content %}
+{{ error }}
+<!--{{ todos.title }}  use the dictionary name -->
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+<br>
+<form method="POST" action="{% url 'completetodos' todos.id%}">
+    {% csrf_token %}
+    <button type="submit">Complete</button>
+</form>
+<br>
+<form method="POST" action="{% url 'deletetodos' todos.id%}">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+</form>
+
+{% endblock %}
+</body>
+</html>
