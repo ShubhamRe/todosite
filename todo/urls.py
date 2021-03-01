@@ -1,7 +1,7 @@
-from . import views
+from todowebsite.todo import views
 from django.urls import path
 
 
 urlPatterns = [
-    path('',views.apiOverview,name='api-overview')
+    path('/apis',views.apiOverview,name='api-overview')
 ]

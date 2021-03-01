@@ -109,5 +109,6 @@ def completedtodos(request):
     todos = Todo.objects.filter(user=request.user, datecompleted__isnull=False).order_by('-datecompleted') #to get only user specific todo objects whose datecompleted is not null and order by datecompleted (here we ahve used - to get descendong order for ascending don't use -) if we use - then it will show recent todo first ..
     return render(request, 'todo/completedtodos.html',{'todos':todos})
 
+
 def apiOverview(request):
     return JsonResponse("API BASE POINT",safe=False)
